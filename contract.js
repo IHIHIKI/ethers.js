@@ -49,6 +49,9 @@ var VoidSigner = /** @class */ (function (_super) {
     VoidSigner.prototype.signMessage = function (message) {
         return this._fail('VoidSigner cannot sign messages', 'signMessage');
     };
+    VoidSigner.prototype.signTypedData = function (typedData) {
+        return this._fail('VoidSigner cannot sign typedData', 'signTypedData');
+    };
     VoidSigner.prototype.sendTransaction = function (transaction) {
         return this._fail('VoidSigner cannot sign transactions', 'sendTransaction');
     };

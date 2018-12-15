@@ -1,5 +1,7 @@
 'use strict';
 
+import { hashTypedData, TypedData } from '@dicether/eip712';
+
 import { arrayify, concat, joinSignature } from './utils/bytes';
 import { BigNumber } from './utils/bignumber';
 import { hashMessage } from './utils/hash';
@@ -78,6 +80,9 @@ export class Wallet extends AbstractSigner {
         return Promise.resolve(joinSignature(this.signingKey.signDigest(hashMessage(message))));
     }
 
+    signTypedData(typedData: TypedData): Promise<string> {
+        return Promise.resolve(joinSignature(this.signingKey.signDigest(hashTypedData(typedData))));
+    }
 
     getBalance(blockTag?: BlockTag): Promise<BigNumber> {
         if (!this.provider) { throw new Error('missing provider'); }

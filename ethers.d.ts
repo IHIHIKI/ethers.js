@@ -9,5 +9,6 @@ import * as wordlists from './wordlists';
 import { platform } from './utils/shims';
 import { version } from './_version';
 import { ContractFunction, ContractTransaction, Event, EventFilter } from './contract';
+import { TypedData } from './abstract-signer';
 declare function getDefaultProvider(network?: utils.Network | string): providers.BaseProvider;
-export { Signer, Wallet, VoidSigner, getDefaultProvider, providers, Contract, ContractFactory, constants, errors, utils, wordlists, platform, version, ContractFunction, ContractTransaction, Event, EventFilter };
+export { Signer, Wallet, VoidSigner, getDefaultProvider, providers, Contract, ContractFactory, constants, errors, utils, wordlists, platform, version, ContractFunction, ContractTransaction, Event, EventFilter, TypedData };

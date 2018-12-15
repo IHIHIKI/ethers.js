@@ -17,7 +17,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// See: https://github.com/ethereum/wiki/wiki/JSON-RPC
 var base_provider_1 = require("./base-provider");
 var abstract_signer_1 = require("../abstract-signer");
 var errors = __importStar(require("../errors"));
@@ -171,6 +170,14 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         return this.getAddress().then(function (address) {
             // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign
             return _this.provider.send('eth_sign', [address.toLowerCase(), bytes_1.hexlify(data)]);
+        });
+    };
+    JsonRpcSigner.prototype.signTypedData = function (typedData) {
+        var _this = this;
+        var data = JSON.stringify(typedData);
+        return this.getAddress().then(function (address) {
+            // https://eips.ethereum.org/EIPS/eip-712
+            return _this.provider.send('eth_signTypedData', [address.toLowerCase(), data]);
         });
     };
     JsonRpcSigner.prototype.unlock = function (password) {

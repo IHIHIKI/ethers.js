@@ -1,3 +1,4 @@
+import { TypedData } from '@dicether/eip712';
 import { BigNumber } from './utils/bignumber';
 import { HDNode } from './utils/hdnode';
 import { SigningKey } from './utils/signing-key';
@@ -22,6 +23,7 @@ export declare class Wallet extends AbstractSigner {
     getAddress(): Promise<string>;
     sign(transaction: TransactionRequest): Promise<string>;
     signMessage(message: Arrayish | string): Promise<string>;
+    signTypedData(typedData: TypedData): Promise<string>;
     getBalance(blockTag?: BlockTag): Promise<BigNumber>;
     getTransactionCount(blockTag?: BlockTag): Promise<number>;
     sendTransaction(transaction: TransactionRequest): Promise<TransactionResponse>;

@@ -1,3 +1,4 @@
+import { TypedData } from '@dicether/eip712';
 import { BigNumber } from './utils/bignumber';
 import { Indexed, Interface } from './utils/interface';
 import { UnsignedTransaction } from './utils/transaction';
@@ -33,6 +34,7 @@ export declare class VoidSigner extends Signer {
     getAddress(): Promise<string>;
     _fail(message: string, operation: string): Promise<any>;
     signMessage(message: Arrayish | string): Promise<string>;
+    signTypedData(typedData: TypedData): Promise<string>;
     sendTransaction(transaction: TransactionRequest): Promise<TransactionResponse>;
     connect(provider: Provider): VoidSigner;
 }

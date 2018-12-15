@@ -2,6 +2,8 @@
 
 // See: https://github.com/ethereum/wiki/wiki/JSON-RPC
 
+import { TypedData } from '@dicether/eip712';
+
 import { BaseProvider } from './base-provider';
 
 import { Signer } from '../abstract-signer';
@@ -176,6 +178,15 @@ export class JsonRpcSigner extends Signer {
 
             // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign
             return this.provider.send('eth_sign', [ address.toLowerCase(), hexlify(data) ]);
+        });
+    }
+
+    signTypedData(typedData: TypedData): Promise<string> {
+        var data = JSON.stringify(typedData);
+        return this.getAddress().then((address) => {
+
+            // https://eips.ethereum.org/EIPS/eip-712
+            return this.provider.send('eth_signTypedData', [ address.toLowerCase(), data ]);
         });
     }
 

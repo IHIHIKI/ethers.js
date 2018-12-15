@@ -17,6 +17,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var eip712_1 = require("@dicether/eip712");
 var bytes_1 = require("./utils/bytes");
 var hash_1 = require("./utils/hash");
 var hdnode_1 = require("./utils/hdnode");
@@ -88,6 +89,9 @@ var Wallet = /** @class */ (function (_super) {
     };
     Wallet.prototype.signMessage = function (message) {
         return Promise.resolve(bytes_1.joinSignature(this.signingKey.signDigest(hash_1.hashMessage(message))));
+    };
+    Wallet.prototype.signTypedData = function (typedData) {
+        return Promise.resolve(bytes_1.joinSignature(this.signingKey.signDigest(eip712_1.hashTypedData(typedData))));
     };
     Wallet.prototype.getBalance = function (blockTag) {
         if (!this.provider) {

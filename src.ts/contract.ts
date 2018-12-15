@@ -1,5 +1,7 @@
 'use strict';
 
+import { TypedData } from '@dicether/eip712';
+
 import { Zero } from './constants';
 
 import * as errors from './errors';
@@ -84,6 +86,10 @@ export class VoidSigner extends Signer {
 
     signMessage(message: Arrayish | string): Promise<string> {
         return this._fail('VoidSigner cannot sign messages', 'signMessage');
+    }
+
+    signTypedData(typedData: TypedData): Promise<string> {
+        return this._fail('VoidSigner cannot sign typedData', 'signTypedData');
     }
 
     sendTransaction(transaction: TransactionRequest): Promise<TransactionResponse> {

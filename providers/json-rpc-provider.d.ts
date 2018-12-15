@@ -1,3 +1,4 @@
+import { TypedData } from '@dicether/eip712';
 import { BaseProvider } from './base-provider';
 import { Signer } from '../abstract-signer';
 import { BigNumber } from '../utils/bignumber';
@@ -16,6 +17,7 @@ export declare class JsonRpcSigner extends Signer {
     sendUncheckedTransaction(transaction: TransactionRequest): Promise<string>;
     sendTransaction(transaction: TransactionRequest): Promise<TransactionResponse>;
     signMessage(message: Arrayish | string): Promise<string>;
+    signTypedData(typedData: TypedData): Promise<string>;
     unlock(password: string): Promise<boolean>;
 }
 export declare class JsonRpcProvider extends BaseProvider {
